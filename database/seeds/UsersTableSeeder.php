@@ -21,13 +21,13 @@ class UsersTableSeeder extends Seeder
         $customer->email = "taenahammed7@gmail.com";
         $customer->password = bcrypt("customer secret");
         $customer->save();
-        $customer->roles()->attach($role_customer->id);
+        $customer->roles()->attach($role_customer);
 
         $admin = new User();
         $admin->name = "Ahammed Taen";
         $admin->email = "taenahammed@gmail.com";
         $admin->password = bcrypt("admin secret");
         $admin->save();
-        $admin->roles()->attach($role_admin->id);
+        $admin->roles()->attach($role_admin);
     }
 }
