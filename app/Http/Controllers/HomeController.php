@@ -21,8 +21,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (!$request->user()->hasAnyRole(['customer', 'admin'])) {
+            return abort(401, "This action is not allowed.");
+        }
+
         return view('home');
+    }
+
+    public function report(Request $request)
+    {
+        if (!$request->user()->hasRole(['admin'])) {
+            return abort(401, "This action is not allowed");
+        }
+
+        return view('report');
     }
 }
