@@ -93,18 +93,21 @@
 
     <div class="container">
         <div class="row">
-
-            @foreach ($posts as $post)
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->description }}</p>
-                        <p class="card-text"><a class="text-muted" href="posts/{{ $post->id }}">Read More</a></p>
                     </div>
                 </div>
             </div>
-            @endforeach
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                </div>
+            </div>
 
         </div>
     </div>

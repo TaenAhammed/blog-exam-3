@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Post;
+use App\Role;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -50,5 +52,10 @@ class User extends Authenticatable
     public function hasAnyRole($roles)
     {
         return $this->roles()->whereIn('name', $roles)->first() !== null;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,8 +27,12 @@ class HomeController extends Controller
         if (!$request->user()->hasAnyRole(['customer', 'admin'])) {
             return abort(401, "This action is not allowed.");
         }
-
-        return view('home');
+        $user_id = $request->user()->id;
+        $posts = Post::all();
+        return view('home', [
+            "user_id" => $user_id,
+            "posts" => $posts
+        ]);
     }
 
     public function report(Request $request)
